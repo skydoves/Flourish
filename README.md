@@ -30,16 +30,22 @@ dependencies {
 ```
 
 ## Usage
-### BasicExample
+### Basic Example
 Here is a basic example of implementing `flourish` using `Flourish.Builder` class.
 
 ```java
 Flourish flourish = new Flourish.Builder(parentLayout)
+    // sets the flourish layout for showing and dismissing on the parent layout.
     .setFlourishLayout(R.layout.layout_flourish_main)
+    // sets the flourishing animation for showing and dismissing.
     .setFlourishAnimation(FlourishAnimation.BOUNCE)
+    // sets the orientation of the starting point.
     .setFlourishOrientation(FlourishOrientation.TOP_LEFT)
+    // sets a flourishListener for listening changes.
     .setFlourishListener(flourishListener)
+    // sets the flourish layout should be showed on start. 
     .setIsShowedOnStart(false)
+    // sets the duration of the flourishing.
     .setDuration(800L)
     .build();
 ```
