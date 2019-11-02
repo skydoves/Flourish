@@ -78,9 +78,33 @@ We can customize a start point orientation of the showing and dismiss.
 .setFlourishOrientation(FlourishOrientation.BOTTOM_RIGHT)
 ```
 
+### FlourishListener
+We can listen to the fourish layout is showed or dismissed.
+```java
+.setFlourishListener(new FlourishListener() {
+  @Override
+  public void onChanged(boolean isShowing) {
+    // do something
+  }
+})
+```
+We can simplify using lambda in kotlin.
+```kotlin
+.setFlourishListener { 
+  // do something 
+}
+```
+
 TOP_LEFT | TOP_RIGHT | BOTTOM_LEFT | BOTTOM_RIGHT |
 | :---------------: | :---------------: | :---------------: | :---------------: |
 | <img src="https://user-images.githubusercontent.com/24237865/68065839-40fe0880-fd72-11e9-87ad-64b6f601d94a.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/68065841-41969f00-fd72-11e9-9d1c-4035836e166a.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/68065840-40fe0880-fd72-11e9-9716-b0bc2f79f1ef.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/68065842-41969f00-fd72-11e9-9dfd-65f42e2f2ed5.gif" align="center" width="100%"/> 
+
+### FlourishAnimation
+We can customize an animation of the showing and dismiss.
+
+NORMAL | ACCELERATE | BOUNCE
+| :---------------: | :---------------: | :---------------: |
+| <img src="https://user-images.githubusercontent.com/24237865/68065894-211b1480-fd73-11e9-82db-3584545382e2.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/68065893-211b1480-fd73-11e9-98e2-0468293db7a5.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/68065498-6f2d1980-fd6d-11e9-8a37-a530f2848501.gif" align="center" width="100%"/>
 
 ## Find this library useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/Flourish/stargazers)__ for this repository. :star:<br>
