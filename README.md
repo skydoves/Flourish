@@ -16,6 +16,7 @@
 </p>
 
 ## Including in your project
+[![Jitpack](https://jitpack.io/v/skydoves/Flourish.svg)](https://jitpack.io/#skydoves/Flourish)
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
 allprojects {
@@ -33,7 +34,7 @@ dependencies {
 
 ## Usage
 ### Basic Example
-Here is a basic example of implementing `flourish` using `Flourish.Builder` class.
+Here is a basic example of implementing `Flourish` using `Flourish.Builder` class.
 
 ```java
 Flourish flourish = new Flourish.Builder(parentLayout)
@@ -77,15 +78,6 @@ flourish.show { toast("showed") }
 flourish.dismiss { toast("dismissed") }
 ```
 
-### FlourishOrientation
-We can customize a start point orientation of the showing and dismiss.
-```
-.setFlourishOrientation(FlourishOrientation.TOP_LEFT)
-.setFlourishOrientation(FlourishOrientation.TOP_RIGHT)
-.setFlourishOrientation(FlourishOrientation.BOTTOM_LEFT)
-.setFlourishOrientation(FlourishOrientation.BOTTOM_RIGHT)
-```
-
 ### FlourishListener
 We can listen to the fourish layout is showed or dismissed.
 ```java
@@ -101,6 +93,15 @@ We can simplify using lambda in kotlin.
 .setFlourishListener { 
   // do something 
 }
+```
+
+### FlourishOrientation
+We can customize a start point orientation of the showing and dismiss.
+```
+.setFlourishOrientation(FlourishOrientation.TOP_LEFT)
+.setFlourishOrientation(FlourishOrientation.TOP_RIGHT)
+.setFlourishOrientation(FlourishOrientation.BOTTOM_LEFT)
+.setFlourishOrientation(FlourishOrientation.BOTTOM_RIGHT)
 ```
 
 TOP_LEFT | TOP_RIGHT | BOTTOM_LEFT | BOTTOM_RIGHT |
