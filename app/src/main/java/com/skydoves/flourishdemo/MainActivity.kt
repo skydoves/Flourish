@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     adapter.addItem(FeedItem(ContextCompat.getDrawable(this, R.drawable.profile1), "Night night",
         getString(R.string.lesson5)))
 
-    flourish.flourishView.toolbar_title.text = "Settings"
+    flourish.flourishView.toolbar_title.text = "Profile"
     flourish.flourishView.toolbar_more.setOnClickListener {
       flourish.dismiss { Toast.makeText(this, "dismissed", Toast.LENGTH_SHORT).show() }
     }

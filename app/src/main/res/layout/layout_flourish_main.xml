@@ -21,13 +21,12 @@
     android:layout_height="64dp"
     android:layout_gravity="center_horizontal"
     android:layout_margin="12dp"
-    android:src="@drawable/lovebird" />
+    android:src="@drawable/skydoves" />
 
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="12dp"
     android:text="skydoves"
     android:textColor="@color/white_93"
     android:textSize="16sp"

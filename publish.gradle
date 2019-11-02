@@ -4,10 +4,10 @@ apply from: '../dependencies.gradle'
 publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
-    artifactId = 'indicatorscrollview'
+    artifactId = 'flourish'
     publishVersion = versions.versionName
-    desc = 'Reacts dynamically with an indicator when the scroll is changed.'
-    website = 'https://github.com/skydoves/IndicatorScrollView'
+    desc = 'A polished and dynamic way to show up layouts.'
+    website = 'https://github.com/skydoves/Flourish'
     issueTracker = "${website}/issues"
     repository = "${website}.git"
 }
