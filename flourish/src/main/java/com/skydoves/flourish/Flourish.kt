@@ -65,6 +65,13 @@ class Flourish(private val builder: Builder) {
     return this
   }
 
+  /**
+   * This function is for supporting Java language.
+   * shows the flourish layout with a polished animation.
+   */
+  fun show() = show { }
+
+  /** shows the flourish layout with a polished animation. */
   fun show(doAfter: () -> Unit = { }) {
     if (!this.isShowing && !this.isFlourishing) {
       this.isShowing = true
@@ -77,6 +84,13 @@ class Flourish(private val builder: Builder) {
     }
   }
 
+  /**
+   * This function is for supporting Java language.
+   * dismisses the flourish layout with a polished animation.
+   */
+  fun dismiss() = dismiss { }
+
+  /** dismisses the flourish layout with a polished animation. */
   fun dismiss(doAfter: () -> Unit = { }) {
     if (this.isShowing && !this.isFlourishing) {
       this.isShowing = false
