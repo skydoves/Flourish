@@ -103,7 +103,7 @@ We can listen to the fourish layout is showed or dismissed.
 We can simplify using lambda in kotlin.
 ```kotlin
 .setFlourishListener { 
-  // do something 
+  toast("isShowing : $it") 
 }
 ```
 
