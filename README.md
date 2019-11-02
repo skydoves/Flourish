@@ -13,6 +13,7 @@
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/68065498-6f2d1980-fd6d-11e9-8a37-a530f2848501.gif" width="32%"/>
+  <img src="https://user-images.githubusercontent.com/24237865/68067075-40bb3880-fd85-11e9-8296-13f0a58b1ec6.gif" width="32%"/>
 </p>
 
 ## Including in your project
