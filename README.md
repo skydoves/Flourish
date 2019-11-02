@@ -78,6 +78,18 @@ flourish.show { toast("showed") }
 flourish.dismiss { toast("dismissed") }
 ```
 
+### FlourishView
+We can get a `flourishView` from an instance of `Flourish`.
+
+```kotlin
+val flourishView: View = flourish.flourishView
+
+flourish.flourishView.toolbar_title.text = "Profile"
+flourish.flourishView.toolbar_more.setOnClickListener {
+  flourish.dismiss { toast("dismissed") }
+}
+```
+
 ### FlourishListener
 We can listen to the fourish layout is showed or dismissed.
 ```java
