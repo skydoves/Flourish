@@ -16,7 +16,7 @@
 </p>
 
 ## Including in your project
-[![Jitpack](https://jitpack.io/v/skydoves/Flourish.svg)](https://jitpack.io/#skydoves/Flourish)
+[![Jitpack](https://jitpack.io/v/skydoves/Flourish.svg)](https://jitpack.io/#skydoves/Flourish) <br>
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
 allprojects {
