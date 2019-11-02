@@ -16,6 +16,7 @@
 </p>
 
 ## Including in your project
+[![Download](https://api.bintray.com/packages/devmagician/maven/flourish/images/download.svg) ](https://bintray.com/devmagician/maven/flourish/_latestVersion)
 [![Jitpack](https://jitpack.io/v/skydoves/Flourish.svg)](https://jitpack.io/#skydoves/Flourish) <br>
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
