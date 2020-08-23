@@ -17,9 +17,11 @@
 package com.skydoves.flourishdemo
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.skydoves.flourish.Flourish
 import com.skydoves.flourish.FlourishAnimation
 import com.skydoves.flourish.FlourishOrientation
 import com.skydoves.flourish.createFlourish
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    val flourish = createFlourish(parentLayout) {
+    val flourish: Flourish<LinearLayout> = createFlourish(parentLayout) {
       setFlourishLayout(R.layout.layout_flourish_main)
       setFlourishAnimation(FlourishAnimation.BOUNCE)
       setFlourishOrientation(FlourishOrientation.TOP_LEFT)

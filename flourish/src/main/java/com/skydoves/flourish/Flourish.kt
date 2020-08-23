@@ -36,7 +36,7 @@ class Flourish<T : ViewGroup>(private val builder: Builder<T>) {
   var isFlourishing = false
     private set
 
-  lateinit var flourishView: ViewGroup
+  lateinit var flourishView: T
 
   init {
     createByBuilder()
@@ -130,7 +130,7 @@ class Flourish<T : ViewGroup>(private val builder: Builder<T>) {
 
   /** Builder class for creating [Flourish]. */
   @FlourishDsl
-  class Builder<T : ViewGroup>(val parentLayout: T) {
+  class Builder<T : ViewGroup>(val parentLayout: ViewGroup) {
 
     @JvmField
     var flourishLayout: T? = null
