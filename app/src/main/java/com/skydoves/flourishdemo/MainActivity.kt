@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity() {
       .setShowOnStart(true)
       .build()
 
+    flourish.flourishView.toolbar_title.text = "Profile"
+    flourish.flourishView.toolbar_more.setOnClickListener {
+      flourish.dismiss { Toast.makeText(this, "dismissed", Toast.LENGTH_SHORT).show() }
+    }
+    flourish.flourishView.recyclerView.adapter = adapter
+
     toolbar_title.text = "Timeline"
     toolbar_more.setOnClickListener {
       flourish.show { Toast.makeText(this, "showed", Toast.LENGTH_SHORT).show() }
@@ -65,11 +71,5 @@ class MainActivity : AppCompatActivity() {
         getString(R.string.lesson4)))
     adapter.addItem(FeedItem(ContextCompat.getDrawable(this, R.drawable.profile1), "Night night",
       getString(R.string.lesson5)))
-
-    flourish.flourishView.toolbar_title.text = "Profile"
-    flourish.flourishView.toolbar_more.setOnClickListener {
-      flourish.dismiss { Toast.makeText(this, "dismissed", Toast.LENGTH_SHORT).show() }
-    }
-    flourish.flourishView.recyclerView.adapter = adapter
   }
 }
