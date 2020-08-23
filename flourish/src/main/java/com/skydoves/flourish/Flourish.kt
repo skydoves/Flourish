@@ -22,6 +22,7 @@ import android.animation.ValueAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 
 class Flourish(private val builder: Builder) {
@@ -146,6 +147,12 @@ class Flourish(private val builder: Builder) {
 
     @JvmField
     var flourishListener: FlourishListener? = null
+
+    init {
+      require(parentLayout !is LinearLayout) {
+        "parent layout should not be a LinearLayout."
+      }
+    }
 
     /** sets the flourish layout for showing and dismissing on the parent layout. */
     fun setFlourishLayout(@LayoutRes value: Int) = apply {
