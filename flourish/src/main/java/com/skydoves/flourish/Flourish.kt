@@ -36,7 +36,7 @@ class Flourish<T : ViewGroup>(private val builder: Builder<T>) {
   var isFlourishing = false
     private set
 
-  lateinit var flourishView: T
+  lateinit var flourishView: ViewGroup
 
   init {
     createByBuilder()

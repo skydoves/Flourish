@@ -63,8 +63,8 @@ val myFlourish = createFlourish(parentLayout) {
   setFlourishLayout(R.layout.layout_flourish_main)
   setFlourishAnimation(FlourishAnimation.ACCELERATE)
   setFlourishOrientation(FlourishOrientation.TOP_RIGHT)
-  setIsShowedOnStart(true)
-  setFlourishListener {  }
+  setShowOnStart(true)
+  setFlourishListener { }
 }
 ```
 
