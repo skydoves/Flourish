@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-@file:Suppress("unused")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
 package com.skydoves.flourish
 
 import android.animation.ValueAnimator
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.core.view.ViewCompat
 
 class Flourish(private val builder: Builder) {
 
-  private var isShowing = false
-  private var isFlourishing = false
+  var isShowing = false
+    private set
+
+  var isFlourishing = false
+    private set
+
   lateinit var flourishView: ViewGroup
 
   init {
@@ -38,28 +40,27 @@ class Flourish(private val builder: Builder) {
 
   private fun createByBuilder(): Flourish {
     with(builder) {
-      val inflater = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-      flourishView =
-        (inflater.inflate(flourishLayout, null) as ViewGroup).apply {
-          rotation = flourishOrientation.getRotation()
-          visible(false)
-          builder.parent.post {
-            pivotX = flourishOrientation.getPivotX(builder.parent)
-            pivotY = flourishOrientation.getPivotY(builder.parent)
+      this@Flourish.flourishView = requireNotNull(builder.flourishLayout) {
+        "FlourishLayout must be required."
+      }.apply {
+        bringToFront()
+        visible(false)
+        flourishLayoutOnClickListener?.let { setOnClickListener(it) }
+      }
+
+      with(parentLayout) {
+        addView(flourishView,
+          ViewGroup.LayoutParams.MATCH_PARENT,
+          ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        post {
+          flourishView.pivotX = flourishOrientation.getPivotX(this)
+          flourishView.pivotY = flourishOrientation.getPivotY(this)
+          flourishView.rotation = flourishOrientation.getRotation()
+          if (isShowedOnStart) {
+            show()
           }
         }
-      ViewCompat.setTranslationZ(flourishView, 1000f)
-      parent.addView(flourishView,
-        ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT
-      )
-      if (flourishLayoutOnClickListener != null) {
-        flourishView.setOnClickListener(flourishLayoutOnClickListener)
-      } else {
-        flourishView.setOnClickListener { }
-      }
-      if (isShowedOnStart) {
-        parent.post { show() }
       }
     }
     return this
@@ -73,12 +74,12 @@ class Flourish(private val builder: Builder) {
 
   /** shows the flourish layout with a polished animation. */
   fun show(doAfter: () -> Unit = { }) {
-    if (!this.isShowing && !this.isFlourishing) {
+    if (!isShowing && !isFlourishing) {
       this.isShowing = true
       this.isFlourishing = true
       this.flourishView.visible(true)
       flourishing(1f, 0f, builder.flourishOrientation.getRotation()) {
-        this.builder.flourishListener?.onChanged(true)
+        builder.flourishListener?.onChanged(true)
         doAfter()
       }
     }
@@ -92,7 +93,7 @@ class Flourish(private val builder: Builder) {
 
   /** dismisses the flourish layout with a polished animation. */
   fun dismiss(doAfter: () -> Unit = { }) {
-    if (this.isShowing && !this.isFlourishing) {
+    if (isShowing && !isFlourishing) {
       this.isShowing = false
       this.isFlourishing = true
       flourishing(0f, 1f, builder.flourishOrientation.getRotation()) {
@@ -114,38 +115,45 @@ class Flourish(private val builder: Builder) {
         }
       }
       doAfterFinishAnimate {
-        doAfter()
         isFlourishing = false
+        doAfter()
       }
       start()
     }
   }
 
-  /** returns flourish layout is showing or not. */
-  fun isShowing() = this.isShowing
-
   /** Builder class for creating [Flourish]. */
   @FlourishDsl
-  class Builder(val parent: ViewGroup) {
+  class Builder(val parentLayout: ViewGroup) {
 
-    @LayoutRes
     @JvmField
-    var flourishLayout: Int = -1
+    var flourishLayout: ViewGroup? = null
+
     @JvmField
     var flourishOrientation: FlourishOrientation = FlourishOrientation.TOP_LEFT
+
     @JvmField
     var duration: Long = 800L
+
     @JvmField
     var flourishAnimation: FlourishAnimation = FlourishAnimation.NORMAL
+
     @JvmField
     var isShowedOnStart: Boolean = false
+
     @JvmField
     var flourishLayoutOnClickListener: View.OnClickListener? = null
+
     @JvmField
     var flourishListener: FlourishListener? = null
 
     /** sets the flourish layout for showing and dismissing on the parent layout. */
-    fun setFlourishLayout(@LayoutRes value: Int) = apply { this.flourishLayout = value }
+    fun setFlourishLayout(@LayoutRes value: Int) = apply {
+      this.flourishLayout = LayoutInflater.from(parentLayout.context).inflate(value, null) as ViewGroup
+    }
+
+    /** sets the flourish view for showing and dismissing on the parent layout. */
+    fun setFlourishView(value: ViewGroup) = apply { this.flourishLayout = value }
 
     /** sets the orientation of the starting point. */
     fun setFlourishOrientation(value: FlourishOrientation) = apply { this.flourishOrientation = value }

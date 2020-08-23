@@ -18,7 +18,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "com.google.android.material:material:$versions.googleMaterial"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
-    implementation "de.hdodenhof:circleimageview:$versions.circleimageview"
     implementation project(':flourish')
 }
 
