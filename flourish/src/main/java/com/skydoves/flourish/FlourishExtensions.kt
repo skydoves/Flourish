@@ -21,5 +21,6 @@ package com.skydoves.flourish
 import android.view.ViewGroup
 
 /** creates an instance of [Flourish] by [Flourish.Builder] using kotlin dsl. */
+@FlourishDsl
 fun createFlourish(parent: ViewGroup, block: Flourish.Builder.() -> Unit): Flourish =
   Flourish.Builder(parent).apply(block).build()

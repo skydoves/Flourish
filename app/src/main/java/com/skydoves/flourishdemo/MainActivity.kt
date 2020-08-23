@@ -20,9 +20,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.skydoves.flourish.Flourish
 import com.skydoves.flourish.FlourishAnimation
 import com.skydoves.flourish.FlourishOrientation
+import com.skydoves.flourish.createFlourish
 import com.skydoves.flourishdemo.recycler.FeedAdapter
 import com.skydoves.flourishdemo.recycler.FeedItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,12 +42,12 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    val flourish = Flourish.Builder(parentLayout)
-      .setFlourishLayout(R.layout.layout_flourish_main)
-      .setFlourishAnimation(FlourishAnimation.BOUNCE)
-      .setFlourishOrientation(FlourishOrientation.TOP_LEFT)
-      .setShowOnStart(true)
-      .build()
+    val flourish = createFlourish(parentLayout) {
+      setFlourishLayout(R.layout.layout_flourish_main)
+      setFlourishAnimation(FlourishAnimation.BOUNCE)
+      setFlourishOrientation(FlourishOrientation.TOP_LEFT)
+      setShowOnStart(true)
+    }
 
     flourish.flourishView.toolbar_title.text = "Profile"
     flourish.flourishView.toolbar_more.setOnClickListener {

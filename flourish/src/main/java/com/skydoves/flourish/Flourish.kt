@@ -25,6 +25,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 
+/**
+ * Flourish implements dynamic ways to show up and dismiss layouts with animations.
+ */
 class Flourish(private val builder: Builder) {
 
   var isShowing = false
@@ -106,20 +109,22 @@ class Flourish(private val builder: Builder) {
   }
 
   private fun flourishing(start: Float, end: Float, rotation: Float, doAfter: () -> Unit) {
-    ValueAnimator.ofFloat(start, end).apply {
-      duration = builder.duration
-      applyInterpolator(builder.flourishAnimation)
-      addUpdateListener {
-        val value = it.animatedValue as Float
-        flourishView.applyLayoutParams {
-          flourishView.rotation = rotation * value
+    flourishView.post {
+      ValueAnimator.ofFloat(start, end).apply {
+        duration = builder.duration
+        applyInterpolator(builder.flourishAnimation)
+        addUpdateListener {
+          val value = it.animatedValue as Float
+          flourishView.applyLayoutParams {
+            flourishView.rotation = rotation * value
+          }
         }
+        doAfterFinishAnimate {
+          isFlourishing = false
+          doAfter()
+        }
+        start()
       }
-      doAfterFinishAnimate {
-        isFlourishing = false
-        doAfter()
-      }
-      start()
     }
   }
 
@@ -134,7 +139,7 @@ class Flourish(private val builder: Builder) {
     var flourishOrientation: FlourishOrientation = FlourishOrientation.TOP_LEFT
 
     @JvmField
-    var duration: Long = 800L
+    var duration: Long = 500L
 
     @JvmField
     var flourishAnimation: FlourishAnimation = FlourishAnimation.NORMAL
