@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-🎩 A polished and dynamic way to show up layouts.<br>
+🎩 Flourish implements dynamic ways to show up and dismiss layouts with animations.<br>
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:flourish:1.0.0"
+    implementation "com.github.skydoves:flourish:1.0.1"
 }
 ```
 
@@ -49,7 +49,7 @@ Flourish flourish = new Flourish.Builder(parentLayout)
     // sets a flourishListener for listening changes.
     .setFlourishListener(flourishListener)
     // sets the flourish layout should be showed on start. 
-    .setIsShowedOnStart(false)
+    .setShowOnStart(false)
     // sets the duration of the flourishing.
     .setDuration(800L)
     .build();
@@ -75,7 +75,7 @@ Here is how to show and dismiss.
 flourish.show()
 flourish.dismiss()
 
-// we can do something after showed or dismissed using lambda.
+// we can do something after showing and dismissing using a lambda.
 flourish.show { toast("showed") }
 flourish.dismiss { toast("dismissed") }
 ```
@@ -93,7 +93,7 @@ flourish.flourishView.toolbar_more.setOnClickListener {
 ```
 
 ### FlourishListener
-We can listen to the fourish layout is showed or dismissed.
+We can listen to the flourish layout is showed or dismissed.
 ```java
 .setFlourishListener(new FlourishListener() {
   @Override

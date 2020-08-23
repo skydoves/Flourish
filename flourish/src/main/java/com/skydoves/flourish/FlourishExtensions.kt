@@ -22,5 +22,5 @@ import android.view.ViewGroup
 
 /** creates an instance of [Flourish] by [Flourish.Builder] using kotlin dsl. */
 @FlourishDsl
-fun createFlourish(parent: ViewGroup, block: Flourish.Builder.() -> Unit): Flourish =
+inline fun <reified T : ViewGroup> createFlourish(parent: T, block: Flourish.Builder<T>.() -> Unit): Flourish<T> =
   Flourish.Builder(parent).apply(block).build()

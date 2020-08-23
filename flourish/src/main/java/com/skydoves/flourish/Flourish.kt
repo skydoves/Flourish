@@ -28,7 +28,7 @@ import androidx.annotation.LayoutRes
 /**
  * Flourish implements dynamic ways to show up and dismiss layouts with animations.
  */
-class Flourish(private val builder: Builder) {
+class Flourish<T : ViewGroup>(private val builder: Builder<T>) {
 
   var isShowing = false
     private set
@@ -36,13 +36,13 @@ class Flourish(private val builder: Builder) {
   var isFlourishing = false
     private set
 
-  lateinit var flourishView: ViewGroup
+  lateinit var flourishView: T
 
   init {
     createByBuilder()
   }
 
-  private fun createByBuilder(): Flourish {
+  private fun createByBuilder(): Flourish<T> {
     with(builder) {
       this@Flourish.flourishView = requireNotNull(builder.flourishLayout) {
         "FlourishLayout must be required."
@@ -130,10 +130,10 @@ class Flourish(private val builder: Builder) {
 
   /** Builder class for creating [Flourish]. */
   @FlourishDsl
-  class Builder(val parentLayout: ViewGroup) {
+  class Builder<T : ViewGroup>(val parentLayout: T) {
 
     @JvmField
-    var flourishLayout: ViewGroup? = null
+    var flourishLayout: T? = null
 
     @JvmField
     var flourishOrientation: FlourishOrientation = FlourishOrientation.TOP_LEFT
@@ -160,12 +160,13 @@ class Flourish(private val builder: Builder) {
     }
 
     /** sets the flourish layout for showing and dismissing on the parent layout. */
+    @Suppress("UNCHECKED_CAST")
     fun setFlourishLayout(@LayoutRes value: Int) = apply {
-      this.flourishLayout = LayoutInflater.from(parentLayout.context).inflate(value, null) as ViewGroup
+      this.flourishLayout = LayoutInflater.from(parentLayout.context).inflate(value, null) as T
     }
 
     /** sets the flourish view for showing and dismissing on the parent layout. */
-    fun setFlourishLayout(value: ViewGroup) = apply { this.flourishLayout = value }
+    fun setFlourishLayout(value: T) = apply { this.flourishLayout = value }
 
     /** sets the orientation of the starting point. */
     fun setFlourishOrientation(value: FlourishOrientation) = apply { this.flourishOrientation = value }
