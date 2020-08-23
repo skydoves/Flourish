@@ -25,14 +25,14 @@ import com.skydoves.flourish.FlourishAnimation
 import com.skydoves.flourish.FlourishOrientation
 import com.skydoves.flourishdemo.recycler.FeedAdapter
 import com.skydoves.flourishdemo.recycler.FeedItem
-import kotlinx.android.synthetic.main.activity_main.parentLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.recyclerView
 import kotlinx.android.synthetic.main.layout_flourish_main.tabLayout
 import kotlinx.android.synthetic.main.layout_flourish_main.view.recyclerView
+import kotlinx.android.synthetic.main.toolbar_custom_back.view.*
 import kotlinx.android.synthetic.main.toolbar_custom_back.view.toolbar_more
-import kotlinx.android.synthetic.main.toolbar_custom_back.view.toolbar_title
+import kotlinx.android.synthetic.main.toolbar_custom_profile.*
 import kotlinx.android.synthetic.main.toolbar_custom_profile.toolbar_more
-import kotlinx.android.synthetic.main.toolbar_custom_profile.toolbar_title
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,10 +43,11 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     val flourish = Flourish.Builder(parentLayout)
-        .setFlourishLayout(R.layout.layout_flourish_main)
-        .setFlourishAnimation(FlourishAnimation.BOUNCE)
-        .setFlourishOrientation(FlourishOrientation.TOP_LEFT)
-        .build()
+      .setFlourishLayout(R.layout.layout_flourish_main)
+      .setFlourishAnimation(FlourishAnimation.BOUNCE)
+      .setFlourishOrientation(FlourishOrientation.TOP_LEFT)
+      .setShowOnStart(true)
+      .build()
 
     toolbar_title.text = "Timeline"
     toolbar_more.setOnClickListener {
@@ -58,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
     recyclerView.adapter = adapter
     adapter.addItem(FeedItem(ContextCompat.getDrawable(this, R.drawable.lovebird), "skydoves",
-        getString(R.string.lesson3)))
+      getString(R.string.lesson3)))
     adapter.addItem(
-        FeedItem(ContextCompat.getDrawable(this, R.drawable.profile2), "The Little Prince",
-            getString(R.string.lesson4)))
+      FeedItem(ContextCompat.getDrawable(this, R.drawable.profile2), "The Little Prince",
+        getString(R.string.lesson4)))
     adapter.addItem(FeedItem(ContextCompat.getDrawable(this, R.drawable.profile1), "Night night",
-        getString(R.string.lesson5)))
+      getString(R.string.lesson5)))
 
     flourish.flourishView.toolbar_title.text = "Profile"
     flourish.flourishView.toolbar_more.setOnClickListener {

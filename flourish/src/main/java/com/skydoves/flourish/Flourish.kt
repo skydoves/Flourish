@@ -57,7 +57,7 @@ class Flourish(private val builder: Builder) {
           flourishView.pivotX = flourishOrientation.getPivotX(this)
           flourishView.pivotY = flourishOrientation.getPivotY(this)
           flourishView.rotation = flourishOrientation.getRotation()
-          if (isShowedOnStart) {
+          if (showOnStart) {
             show()
           }
         }
@@ -139,7 +139,7 @@ class Flourish(private val builder: Builder) {
     var flourishAnimation: FlourishAnimation = FlourishAnimation.NORMAL
 
     @JvmField
-    var isShowedOnStart: Boolean = false
+    var showOnStart: Boolean = false
 
     @JvmField
     var flourishLayoutOnClickListener: View.OnClickListener? = null
@@ -153,7 +153,7 @@ class Flourish(private val builder: Builder) {
     }
 
     /** sets the flourish view for showing and dismissing on the parent layout. */
-    fun setFlourishView(value: ViewGroup) = apply { this.flourishLayout = value }
+    fun setFlourishLayout(value: ViewGroup) = apply { this.flourishLayout = value }
 
     /** sets the orientation of the starting point. */
     fun setFlourishOrientation(value: FlourishOrientation) = apply { this.flourishOrientation = value }
@@ -165,7 +165,7 @@ class Flourish(private val builder: Builder) {
     fun setFlourishAnimation(value: FlourishAnimation) = apply { this.flourishAnimation = value }
 
     /** sets the flourish layout should be showed on start. */
-    fun setIsShowedOnStart(value: Boolean) = apply { this.isShowedOnStart = value }
+    fun setShowOnStart(value: Boolean) = apply { this.showOnStart = value }
 
     /** sets an onClickListener to the flourish layout. */
     fun setFlourishLayoutOnClickListener(value: View.OnClickListener) = apply { this.flourishLayoutOnClickListener = value }
